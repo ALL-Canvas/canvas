@@ -1,7 +1,7 @@
 import '@tldraw/tldraw/tldraw.css'
-import { Tldraw, type Editor } from '@tldraw/tldraw'
-import { useRef } from 'react'
+import { Tldraw, createShapeId, type Editor, type TLShape } from '@tldraw/tldraw'
 import { CanvasFrameShapeUtil } from './CanvasFrame'
+import { useCanvasStore } from '@/stores'
 
 const SHAPE_UTILS = [CanvasFrameShapeUtil]
 
@@ -12,8 +12,8 @@ function CustomBackground() {
         position: 'absolute',
         inset: 0,
         backgroundColor: '#F7F7F5',
-        backgroundImage: 'radial-gradient(circle, #D3D3CE 1px, transparent 1px)',
-        backgroundSize: '20px 20px',
+        backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px)',
+        backgroundSize: '40px 40px',
       }}
     />
   )
@@ -36,24 +36,50 @@ const HIDDEN_UI_COMPONENTS = {
 } as const
 
 export function CanvasWorkspace() {
-  const editorRef = useRef<Editor | null>(null)
+  const setEditor = useCanvasStore((s) => s.setEditor)
+  const initialFrame = useCanvasStore((s) => s.frames[0])
 
   function handleMount(editor: Editor) {
-    editorRef.current = editor
+    setEditor(editor)
 
     editor.createShape({
+      id: createShapeId(initialFrame.id),
       type: 'canvas-frame',
-      x: -720,
-      y: -400,
+      x: initialFrame.canvasX,
+      y: initialFrame.canvasY,
       props: {
-        name: 'Untitled Frame',
-        frameType: 'dashboard',
-        w: 1440,
-        h: 800,
+        name: initialFrame.name,
+        frameType: initialFrame.type,
+        w: initialFrame.width,
+        h: initialFrame.height,
       },
     })
 
+    editor.updateInstanceState({ isGridMode: true })
+
     editor.zoomToFit()
+
+    // Sync tldraw shape changes back to our store
+    editor.store.listen((entry) => {
+      // Deletions
+      for (const record of Object.values(entry.changes.removed)) {
+        if (record.typeName === 'shape' && (record as TLShape).type === 'canvas-frame') {
+          const frameId = (record.id as string).replace('shape:', '')
+          useCanvasStore.getState().deleteFrame(frameId)
+        }
+      }
+      // Position updates (frame moved on canvas)
+      for (const [, next] of Object.values(entry.changes.updated)) {
+        if (next.typeName === 'shape' && (next as TLShape).type === 'canvas-frame') {
+          const frameId = (next.id as string).replace('shape:', '')
+          const shape = next as TLShape
+          useCanvasStore.getState().updateFrame(frameId, {
+            canvasX: shape.x,
+            canvasY: shape.y,
+          })
+        }
+      }
+    })
   }
 
   return (

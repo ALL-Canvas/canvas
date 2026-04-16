@@ -549,10 +549,10 @@ git push
 
 ---
 
-## P1-T3 — Navigator Component ⬜
+## ~~P1-T3 — Navigator Component~~ ✅
 
-### Was gebaut wird
-Funktionaler Navigator. Frames erstellen, umbenennen, löschen, umsortieren. Klick navigiert zu Frame.
+### Was gebaut wurde
+Funktionaler Navigator. Frames erstellen, umbenennen, löschen, umsortieren, Klick navigiert zu Frame auf Canvas.
 
 ### Visuelles Ziel (Pages Tab)
 ```
@@ -626,12 +626,23 @@ Pages Tab:
 - Suchfeld filtert Frames
 - Aktiver Frame ist highlighted
 
-### Push
-```bash
-git add .
-git commit -m "P1-T3: Navigator — frame CRUD, inline rename, context menu, search"
-git push
-```
+### Was tatsächlich gebaut wurde (inkl. Nico-Feedback)
+
+**Gebaut:**
+- Navigator.tsx vollständig neu — FrameItem Component, Inline-Rename, HTML5 Drag-to-Reorder, Suche, ContextMenu
+- ContextMenu.tsx als wiederverwendbare UI-Komponente
+- useCanvasStore mit `editor` Ref für Camera-Navigation
+- Canvas→Store Sync via `editor.store.listen()` — Deletions und Position-Updates werden zurückgeschrieben
+- Smarte Frame-Platzierung: neuer Frame neben aktivem Frame, Kollisions-Algorithmus springt über besetzte Slots
+- Kamera springt automatisch zu neu erstelltem Frame
+- Dot-Grid: 40px Spacing, `rgba(0,0,0,0.08)` (von 20px / #D3D3CE auf Nicos Feedback)
+- 16px Grid-Snap via tldraw `isGridMode: true` (zoom-adaptiv eingebaut)
+
+**Probleme & Fixes:**
+- Canvas→Navigator Sync fehlte initial — Frame auf Canvas löschen updaterte Navigator nicht
+- Neue Frame-Position berechnete von letztem Frame in Liste, nicht vom aktiven Frame
+- tldraw `gridSize` als instanceState Property existiert nicht in v4 → ValidationError → entfernt, tldraw nutzt intern zoom-adaptive Schritte (64 / 16 / 8px)
+- Frame-Position im Store wurde nicht aktualisiert wenn Frame auf Canvas verschoben → `updated` Events im Store-Listener ergänzt
 
 ---
 

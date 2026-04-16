@@ -8,6 +8,9 @@ export interface Frame {
   name: string
   type: FrameType
   width: number
+  height: number
+  canvasX: number
+  canvasY: number
   order: number
   isTemplate: boolean
   folderId: string | null

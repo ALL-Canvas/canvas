@@ -173,7 +173,7 @@ Diese Punkte sind bewusst offen — sie müssen in einer Diskussions-Session gek
 ## 7. STATUS
 
 **Aktuelle Phase:** 1 — Shell
-**Nächste Task:** P1-T3
+**Nächste Task:** P1-T4
 **Aktiver Meilenstein:** — (noch kein Code)
 **Design:** offen
 **Bekannte Probleme:** keine
@@ -329,17 +329,27 @@ Agent 1 pushed
 
 ---
 
-### P1-T3 — Navigator Component ⬜
-**Extra (wichtig — beides muss rein):**
-1. Neuer Frame wird automatisch rechts neben letztem Frame positioniert (X = letzter Frame X + Breite + 100px). Nie übereinander.
-2. Frame-Snap beim Bewegen: subtiler magnetischer Snap auf andere Frame-Kanten, Frame-Zentren und 8px Grid. Smooth, nicht mechanisch — wie Figma. Man merkt es kaum aber alles landet sauber ausgerichtet.
+### ~~P1-T3 — Navigator Component~~ ✅
 **Dauer:** ~45min
-**Was entsteht:**
-- **Pages Tab:** Frame-Liste, aktiver Frame highlighted, Klick → Canvas springt hin, "+" Button → neuer Frame, Doppelklick → umbenennen, Rechtsklick → Kontextmenü (Umbenennen/Duplizieren/Löschen), Drag → Reihenfolge, Ordner-Gruppen, Template-Frames als eingeklappte Gruppe mit Instanz-Anzahl
-- **Components Tab:** leer für jetzt (Platzhalter "Block-Pool kommt in Phase 4")
-**Claude liefert:** Navigator Component, Frame-CRUD im Store, Ordner-Logik
+**Was gebaut wurde:**
+- Pages Tab: Frame-Liste aus useCanvasStore, aktiver Frame violett highlighted, Klick → Camera springt zu Frame
+- Doppelklick → Inline-Rename (Input, Enter/ESC), "···" bei Hover → Kontextmenü (Umbenennen / Duplizieren / Als Template / Löschen)
+- Suchfeld filtert Frames live, Drag-to-Reorder via HTML5
+- Components Tab: Platzhalter "Block-Pool kommt in Phase 4"
+- ContextMenu als wiederverwendbare UI-Komponente
+- 16px Grid-Snap (tldraw built-in, zoom-adaptiv: 64px→16px→8px)
+- Dot-Grid: 40px Spacing, rgba(0,0,0,0.08) — subtil, augenschonend
+- Canvas→Store Sync: Shapes die auf Canvas gelöscht werden verschwinden im Navigator, Frame-Positionen werden nach Verschieben zurück in Store geschrieben
+- Smarte Frame-Platzierung: neuer Frame erscheint rechts vom aktiven Frame, Kollisions-Erkennung verschiebt weiter rechts bis freier Slot gefunden
 
-**Fertig wenn:** Frames erstellen, umbenennen, löschen, umsortieren.
+**Nicos Anforderungen die nachträglich hinzukamen:**
+- Dot-Grid war zu dicht und zu dunkel → auf 40px / rgba(0,0,0,0.08) reduziert
+- Canvas→Navigator Sync fehlte initial → tldraw store.listen() hinzugefügt
+- Neue Frames sollten neben aktivem Frame entstehen (nicht immer am Ende)
+- Kamera soll bei neuem Frame direkt dorthin springen
+- gridSize als instanceState Property existiert in tldraw v4 nicht → ValidationError behoben, tldraw verwendet zoom-adaptive Schritte intern
+
+**Fertig wenn:** Frames erstellen/umbenennen/löschen/umsortieren, Canvas-Sync funktioniert, Kamera springt zu neuem Frame.
 
 ---
 
@@ -1165,6 +1175,9 @@ REST API für externe Integrationen. API Keys in Settings. Rate Limiting. Docs P
 | Apr 2026 | — | Vision + Feature Bible + Build Plan + Konzept-Diskussion | P0-T1 |
 | Apr 2026 | P0-T1 | Tools installiert (Node v24.10.0, npm 11.6.0, Cursor, GitHub, Windows) | P0-T2 |
 | Apr 2026 | P0-T2 | Projekt aufgesetzt — React+TS+Tailwind, alle Libraries, Ordnerstruktur, Docs im Repo, GitHub Push | P0-T3 |
+| Apr 2026 | P1-T1 | App-Layout gebaut — TopBar, Navigator (2 Tabs), PropertyPanel (4 Tabs), UIStore, WorkspacePage. 3-Spalten-Layout mit Mode-Switcher sichtbar. | P1-T2 |
+| Apr 2026 | P1-T2 | tldraw Canvas eingebunden — CanvasWorkspace, Custom Frame Shape, Dot-Grid Hintergrund, useCanvasStore. Frame sichtbar, Zoom/Pan funktioniert. | P1-T3 |
+| Apr 2026 | P1-T3 | Navigator vollständig — Frame CRUD, Inline-Rename, Kontextmenü, Suche, Drag-to-Reorder, Camera-Navigation, ContextMenu. Fixes: Canvas→Store Sync, smarte Frame-Platzierung (aktiver Frame + Kollisions-Skip), Dot-Grid dezenter, tldraw gridSize Bug behoben. | P1-T4 |
 
 ---
 
