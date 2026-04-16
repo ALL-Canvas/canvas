@@ -173,7 +173,7 @@ Diese Punkte sind bewusst offen — sie müssen in einer Diskussions-Session gek
 ## 7. STATUS
 
 **Aktuelle Phase:** 0 — Setup
-**Nächste Task:** P0-T2
+**Nächste Task:** P0-T3
 **Aktiver Meilenstein:** — (noch kein Code)
 **Design:** offen
 **Bekannte Probleme:** keine
@@ -214,7 +214,7 @@ npm --version     # sollte 10.x.x zeigen
 
 ---
 
-### P0-T2 — Projekt aufsetzen ⬜
+### ~~P0-T2 — Projekt aufsetzen~~ ✅
 **Dauer:** ~30min
 **Claude liefert:** Vite + React + TypeScript Setup, alle Dependencies, Tailwind Config, Ordnerstruktur, .env.example
 **Nico führt aus:** Terminal Commands, öffnet Cursor
@@ -240,7 +240,7 @@ npm --version     # sollte 10.x.x zeigen
 
 ---
 
-### P0-T4 — GitHub Push ⬜
+### ~~P0-T4 — GitHub Push~~ ✅
 **Dauer:** ~15min
 **Claude liefert:** Git Commands
 **Nico macht:** Repo auf GitHub erstellen, ersten Push
@@ -263,6 +263,34 @@ npm --version     # sollte 10.x.x zeigen
 **Fertig wenn:** CANVAS läuft auf einer vercel.app URL.
 
 *Wird geliefert wenn P0-T4 erledigt.*
+
+---
+
+## P0-T6 — Drei-Agenten-System einrichten ⬜
+**Dauer:** ~20min
+
+**Was entsteht:** Alle drei Agent-Files sind im Repo. Claude Code ist installiert. Agenten-Workflow ist bereit.
+
+**Agenten-Rollen:**
+- Agent 1 (Builder): Schreibt Code, implementiert Tasks
+- Agent 2 (Reviewer): Prueft Code akribisch nach jeder Task
+- Agent 3 (PM): Prueft Vision + Plan, gibt finales OK an Nico
+
+**Workflow:**
+Nico gibt Task-ID
+Agent 1 baut + Builder Report
+Agent 2 reviewt + Reviewer Report
+Agent 3 prueft Vision + PM Report fuer Nico
+Nico testet + "passt, push"
+Agent 1 pushed
+
+**Nico macht:**
+1. Claude Code installieren: npm install -g @anthropic-ai/claude-code
+2. Globale CLAUDE.md: Ordner C:\Users\Nicol\.claude\ erstellen, CLAUDE-GLOBAL.md dort als CLAUDE.md ablegen
+3. Agent-Files in docs/ kopieren: CLAUDE-AGENT1-BUILDER.md, CLAUDE-AGENT2-REVIEWER.md, CLAUDE-AGENT3-PM.md
+4. Reports-Ordner erstellen: mkdir docs\reports (Agent-Reports werden hier gespeichert)
+
+**Fertig wenn:** claude --version zeigt Versionsnummer. Alle drei Files in docs/.
 
 ---
 
@@ -1133,6 +1161,7 @@ REST API für externe Integrationen. API Keys in Settings. Rate Limiting. Docs P
 |---|---|---|---|
 | Apr 2026 | — | Vision + Feature Bible + Build Plan + Konzept-Diskussion | P0-T1 |
 | Apr 2026 | P0-T1 | Tools installiert (Node v24.10.0, npm 11.6.0, Cursor, GitHub, Windows) | P0-T2 |
+| Apr 2026 | P0-T2 | Projekt aufgesetzt — React+TS+Tailwind, alle Libraries, Ordnerstruktur, Docs im Repo, GitHub Push | P0-T3 |
 
 ---
 
