@@ -74,7 +74,7 @@ Wenn Nico den Brief bestätigt → starte Agent 1.
 
 ---
 
-## Phase 2 — Agent 1 starten
+## Phase 2 — Agent 1 starten (NUR nach expliziter Bestätigung von Nico)
 
 Wenn Task-Brief fertig und von Nico bestätigt:
 
