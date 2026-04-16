@@ -265,7 +265,7 @@ git push -u origin main
 
 ---
 
-## P0-T3 — Supabase einrichten ⬜
+## ~~P0-T3 — Supabase einrichten~~ ✅
 
 ### Was Nico manuell macht
 1. Geh auf supabase.com → "New Project"
@@ -315,7 +315,7 @@ git push
 
 ---
 
-## P0-T5 — Vercel Deploy ⬜
+## ~~P0-T5 — Vercel Deploy~~ ✅
 
 ### Was Nico manuell macht
 1. Geh auf vercel.com → "Add New Project"
@@ -335,7 +335,7 @@ canvas-[hash].vercel.app zeigt die App ohne Errors.
 
 ---
 
-## P1-T1 — App-Layout ⬜
+## ~~P1-T1 — App-Layout~~ ✅
 
 ### Was gebaut wird
 Das 3-Spalten-Layout. Noch kein tldraw, noch keine Funktionalität. Nur die Struktur die für alle weiteren Tasks die Basis ist.

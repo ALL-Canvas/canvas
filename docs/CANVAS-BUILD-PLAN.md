@@ -173,7 +173,7 @@ Diese Punkte sind bewusst offen — sie müssen in einer Diskussions-Session gek
 ## 7. STATUS
 
 **Aktuelle Phase:** 1 — Shell
-**Nächste Task:** P1-T1
+**Nächste Task:** P1-T2
 **Aktiver Meilenstein:** — (noch kein Code)
 **Design:** offen
 **Bekannte Probleme:** keine
@@ -227,7 +227,7 @@ npm --version     # sollte 10.x.x zeigen
 
 ---
 
-### P0-T3 — Supabase einrichten ⬜
+### ~~P0-T3 — Supabase einrichten~~ ✅
 **Dauer:** ~20min
 **Claude liefert:** Schritt-für-Schritt Anleitung + .env Template
 **Nico macht:** supabase.com → neues Projekt → Keys in .env eintragen
@@ -253,7 +253,7 @@ npm --version     # sollte 10.x.x zeigen
 
 ---
 
-### P0-T5 — Vercel Deploy ⬜
+### ~~P0-T5 — Vercel Deploy~~ ✅
 **Dauer:** ~15min
 **Claude liefert:** Anleitung
 **Nico macht:** vercel.com → GitHub Repo verbinden → Deploy
@@ -299,7 +299,7 @@ Agent 1 pushed
 
 ---
 
-### P1-T1 — App-Layout ⬜
+### ~~P1-T1 — App-Layout~~ ✅
 **Dauer:** ~45min
 **Was entsteht:**
 ```
@@ -1162,6 +1162,7 @@ REST API für externe Integrationen. API Keys in Settings. Rate Limiting. Docs P
 | Apr 2026 | — | Vision + Feature Bible + Build Plan + Konzept-Diskussion | P0-T1 |
 | Apr 2026 | P0-T1 | Tools installiert (Node v24.10.0, npm 11.6.0, Cursor, GitHub, Windows) | P0-T2 |
 | Apr 2026 | P0-T2 | Projekt aufgesetzt — React+TS+Tailwind, alle Libraries, Ordnerstruktur, Docs im Repo, GitHub Push | P0-T3 |
+| Apr 2026 | P1-T1 | App-Layout gebaut — TopBar, Navigator (2 Tabs), PropertyPanel (4 Tabs), UIStore, WorkspacePage. 3-Spalten-Layout mit Mode-Switcher sichtbar. | P1-T2 |
 
 ---
 
