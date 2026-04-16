@@ -172,8 +172,8 @@ Diese Punkte sind bewusst offen — sie müssen in einer Diskussions-Session gek
 
 ## 7. STATUS
 
-**Aktuelle Phase:** 0 — Setup
-**Nächste Task:** P0-T3
+**Aktuelle Phase:** 1 — Shell
+**Nächste Task:** P1-T1
 **Aktiver Meilenstein:** — (noch kein Code)
 **Design:** offen
 **Bekannte Probleme:** keine
@@ -266,7 +266,7 @@ npm --version     # sollte 10.x.x zeigen
 
 ---
 
-## P0-T6 — Drei-Agenten-System einrichten ⬜
+## ~~P0-T6 — Drei-Agenten-System einrichten~~ ✅
 **Dauer:** ~20min
 
 **Was entsteht:** Alle drei Agent-Files sind im Repo. Claude Code ist installiert. Agenten-Workflow ist bereit.
